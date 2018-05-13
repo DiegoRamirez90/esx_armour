@@ -29,3 +29,11 @@ ESX.RegisterUsableItem('handcuff', function(source)
 	TriggerClientEvent('esx_armour:handcuff', source)
 end)
 
+AddEventHandler('esx_armour:cutting_pliers', function(source)
+  TriggerClientEvent('esx_armour:cutting_pliers', source)
+end)
+
+ESX.RegisterUsableItem('cutting_pliers', function(source)
+	TriggerClientEvent('esx_armour:cutting_pliers', source)
+end)
+

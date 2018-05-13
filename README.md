@@ -10,3 +10,5 @@ start esx_armour
 puis soit vous ajouter l'item dans votre shop ou autre et utilisé le vous verrez comme par magie vous aurez un gilet par balle ;)
 
 ajout de l'item serflex
+
+ajout de l'item pince coupante pour retirer le serflex

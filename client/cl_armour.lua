@@ -62,6 +62,29 @@ AddEventHandler('esx_armour:handcuff', function()
         ESX.ShowNotification('tu a utlisé un serflex')
 
       else
+        ESX.ShowNotification('cette personne a déjà un serflex')
+
+      end
+    else
+      ESX.ShowNotification('aucun joueur à proximité')
+    end
+
+  end)
+end)
+
+RegisterNetEvent('esx_armour:cutting_pliers')
+AddEventHandler('esx_armour:cutting_pliers', function()
+
+  IsHandcuffed    = not IsHandcuffed;
+  local playerPed = GetPlayerPed(-1)
+
+  Citizen.CreateThread(function()
+
+    local player, distance = ESX.Game.GetClosestPlayer()
+    if distance ~= -1 and distance <= 3.0 then
+      if IsHandcuffed then
+          ESX.ShowNotification('Cette personne n\'a pas de serflex')
+      else
 
         ClearPedSecondaryTask(playerPed)
         SetEnableHandcuffs(playerPed, false)
@@ -76,3 +99,4 @@ AddEventHandler('esx_armour:handcuff', function()
 
   end)
 end)
+
