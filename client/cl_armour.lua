@@ -54,10 +54,10 @@ AddEventHandler('esx_armour:handcuff', function()
           Wait(100)
         end
 
-        TaskPlayAnim(playerPed, 'mp_arresting', 'idle', 8.0, -8, -1, 49, 0, 0, 0, 0)
-        SetEnableHandcuffs(playerPed, true)
-        SetPedCanPlayGestureAnims(playerPed, false)
-        FreezeEntityPosition(playerPed,  true)
+        TaskPlayAnim(GetPlayerServerId(player), 'mp_arresting', 'idle', 8.0, -8, -1, 49, 0, 0, 0, 0)
+        SetEnableHandcuffs(GetPlayerServerId(player), true)
+        SetPedCanPlayGestureAnims(GetPlayerServerId(player), false)
+        FreezeEntityPosition(GetPlayerServerId(player),  true)
         TriggerServerEvent('esx_armour:handcuffremove')
         ESX.ShowNotification('tu a utlisé un serflex')
 
@@ -86,10 +86,10 @@ AddEventHandler('esx_armour:cutting_pliers', function()
           ESX.ShowNotification('Cette personne n\'a pas de serflex')
       else
 
-        ClearPedSecondaryTask(playerPed)
-        SetEnableHandcuffs(playerPed, false)
-        SetPedCanPlayGestureAnims(playerPed,  true)
-        FreezeEntityPosition(playerPed, false)
+        ClearPedSecondaryTask(GetPlayerServerId(player))
+        SetEnableHandcuffs(GetPlayerServerId(player), false)
+        SetPedCanPlayGestureAnims(GetPlayerServerId(player),  true)
+        FreezeEntityPosition(GetPlayerServerId(player), false)
         ESX.ShowNotification('tu a enlever un serflex')
 
       end
