@@ -1,10 +1,10 @@
 ESX          = nil
 
 Citizen.CreateThread(function()
-	while ESX == nil do
-		TriggerEvent('esx:getSharedObject', function(obj) ESX = obj end)
-		Citizen.Wait(0)
-	end
+  while ESX == nil do
+    TriggerEvent('esx:getSharedObject', function(obj) ESX = obj end)
+    Citizen.Wait(0)
+  end
 end)
 
 RegisterNetEvent('esx_armour:armor')
@@ -34,4 +34,45 @@ AddEventHandler('esx_armour:armor', function()
     ESX.ShowNotification("Tu a utilisé un gilet par balle")
   end
 
+end)
+
+RegisterNetEvent('esx_armour:handcuff')
+AddEventHandler('esx_armour:handcuff', function()
+
+  IsHandcuffed    = not IsHandcuffed;
+  local playerPed = GetPlayerPed(-1)
+
+  Citizen.CreateThread(function()
+
+    local player, distance = ESX.Game.GetClosestPlayer()
+    if distance ~= -1 and distance <= 3.0 then
+      if IsHandcuffed then
+
+        RequestAnimDict('mp_arresting')
+
+        while not HasAnimDictLoaded('mp_arresting') do
+          Wait(100)
+        end
+
+        TaskPlayAnim(playerPed, 'mp_arresting', 'idle', 8.0, -8, -1, 49, 0, 0, 0, 0)
+        SetEnableHandcuffs(playerPed, true)
+        SetPedCanPlayGestureAnims(playerPed, false)
+        FreezeEntityPosition(playerPed,  true)
+        TriggerServerEvent('esx_armour:handcuffremove')
+        ESX.ShowNotification('tu a utlisé un serflex')
+
+      else
+
+        ClearPedSecondaryTask(playerPed)
+        SetEnableHandcuffs(playerPed, false)
+        SetPedCanPlayGestureAnims(playerPed,  true)
+        FreezeEntityPosition(playerPed, false)
+        ESX.ShowNotification('tu a enlever un serflex')
+
+      end
+    else
+      ESX.ShowNotification('aucun joueur à proximité')
+    end
+
+  end)
 end)

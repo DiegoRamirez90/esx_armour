@@ -14,3 +14,18 @@ ESX.RegisterUsableItem('armor', function(source)
 	TriggerClientEvent('esx_armour:armor', source)
 end)
 
+RegisterServerEvent('esx_armour:handcuffremove')
+AddEventHandler('esx_armour:handcuffremove', function()
+	local xPlayer = ESX.GetPlayerFromId(source)
+	xPlayer.removeInventoryItem('handcuff', 1)
+end)
+
+RegisterServerEvent('esx_armour:handcuff')
+AddEventHandler('esx_armour:handcuff', function(source)
+  TriggerClientEvent('esx_armour:handcuff', source)
+end)
+
+ESX.RegisterUsableItem('handcuff', function(source)
+	TriggerClientEvent('esx_armour:handcuff', source)
+end)
+
