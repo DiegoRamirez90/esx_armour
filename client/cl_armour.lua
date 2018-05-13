@@ -46,6 +46,7 @@ AddEventHandler('esx_armour:handcuff', function()
 
     local player, distance = ESX.Game.GetClosestPlayer()
     if distance ~= -1 and distance <= 3.0 then
+
       if IsHandcuffed then
 
         RequestAnimDict('mp_arresting')
@@ -54,10 +55,10 @@ AddEventHandler('esx_armour:handcuff', function()
           Wait(100)
         end
 
-        TaskPlayAnim(GetPlayerServerId(player), 'mp_arresting', 'idle', 8.0, -8, -1, 49, 0, 0, 0, 0)
-        SetEnableHandcuffs(GetPlayerServerId(player), true)
-        SetPedCanPlayGestureAnims(GetPlayerServerId(player), false)
-        FreezeEntityPosition(GetPlayerServerId(player),  true)
+        TaskPlayAnim(GetPlayerPed(player), 'mp_arresting', 'idle', 8.0, -8, -1, 49, 0, 0, 0, 0)
+        SetEnableHandcuffs(GetPlayerPed(player), true)
+        SetPedCanPlayGestureAnims(GetPlayerPed(player), false)
+        FreezeEntityPosition(GetPlayerPed(player),  true)
         TriggerServerEvent('esx_armour:handcuffremove')
         ESX.ShowNotification('tu a utlisé un serflex')
 
@@ -86,10 +87,10 @@ AddEventHandler('esx_armour:cutting_pliers', function()
           ESX.ShowNotification('Cette personne n\'a pas de serflex')
       else
 
-        ClearPedSecondaryTask(GetPlayerServerId(player))
-        SetEnableHandcuffs(GetPlayerServerId(player), false)
-        SetPedCanPlayGestureAnims(GetPlayerServerId(player),  true)
-        FreezeEntityPosition(GetPlayerServerId(player), false)
+        ClearPedSecondaryTask(GetPlayerPed(player))
+        SetEnableHandcuffs(GetPlayerPed(player), false)
+        SetPedCanPlayGestureAnims(GetPlayerPed(player),  true)
+        FreezeEntityPosition(GetPlayerPed(player), false)
         ESX.ShowNotification('tu a enlever un serflex')
 
       end
